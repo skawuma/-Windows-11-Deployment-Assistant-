@@ -1,0 +1,71 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+secrets/
+credentials/
+
+# Operating-system and editor files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# Java, Maven, and backend runtime
+backend/target/
+target/
+*.class
+*.jar
+*.war
+*.log
+hs_err_pid*
+
+# Node and Angular
+frontend/node_modules/
+node_modules/
+frontend/dist/
+frontend/.angular/
+coverage/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# PowerShell runtime output and local state
+powershell/output/
+powershell/logs/
+powershell/summaries/
+powershell/outbox/
+powershell/state/
+*.clixml
+
+# Database and container-local state
+postgres-data/
+pgdata/
+*.pid
+
+# Test and temporary artifacts
+.tmp/
+tmp/
+temp/
+*.tmp
+*.bak
+*.orig
+test-results/
+
+# Local configuration overrides (safe examples may be committed explicitly)
+*.local.json
+*.local.yaml
+*.local.yml
+application-local.properties
+application-local.yml
