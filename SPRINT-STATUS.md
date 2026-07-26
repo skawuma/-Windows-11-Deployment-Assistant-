@@ -4,11 +4,11 @@ Current version: Version 1 — Local PowerShell Technician Assistant
 
 Current sprint: Sprint 1 — Discovery, governance, and project foundation
 
-Sprint status: READY_FOR_REVIEW
+Sprint status: COMPLETE
 
 Start date: 2026-07-26
 
-Completion date: Not completed; verified GitHub push is pending
+Completion date: 2026-07-26
 
 Implemented:
 
@@ -22,6 +22,8 @@ Implemented:
 - Documented security, privacy, evidence, authority, and enterprise boundaries.
 - Initialized local Git on `codex/qnity-incremental-development` for the Sprint 1
   milestone commit.
+- Verified `skawuma/-Windows-11-Deployment-Assistant-` and pushed the milestone
+  branch to its exact GitHub remote.
 
 Tests executed:
 
@@ -44,12 +46,11 @@ Known limitations:
   validation is unavailable.
 - The selected future toolchain versions are not all installed on the current
   host; wrappers/containers will be established in their authorized sprints.
-- No Git repository or Git remote existed at sprint start.
-- The GitHub CLI account `skawuma` requires reauthentication.
+- Windows-specific and application-level tests remain deferred to their
+  authorized implementation sprints.
 
 Unresolved decisions:
 
-- Exact GitHub repository URL under `skawuma`.
 - Enterprise approvals listed in
   `docs/requirements-reconciliation.md`, including application identities,
   device settings, authentication, retention, signatures, and exception policy.
