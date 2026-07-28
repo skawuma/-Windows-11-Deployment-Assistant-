@@ -4,23 +4,21 @@ This guide explains how the assistant runs on each Windows PC, how results shoul
 
 ## 1. Current behavior versus target behavior
 
-### Intended Version 1 behavior
+### Version 1 behavior and current boundary
 
-The planned assistant is a **one-shot local PowerShell process**:
+The assistant is a **one-shot local PowerShell process**. Sprint 2 implements:
 
 1. A technician starts `Start-QnityDeploymentAssistant.ps1` on one PC.
 2. The script reads local configuration.
 3. It applies approved Windows settings on that PC.
-4. It checks that PC for Company Portal, Windows App, and Microsoft 365.
-5. It determines the next technician or user action.
-6. It writes a log, JSON summary, and text summary to local storage.
-7. The process exits.
+4. It emits normalized in-memory results and exits.
 
-At Sprint 1 this behavior is documented but not implemented. When implemented,
-Version 1 will not contact an API, stay running as a service, monitor every PC
-remotely, or update an Angular dashboard. Its configuration is expected to contain
-disabled extension placeholders so those capabilities can be added without
-changing the core result format abruptly.
+Sprint 3 adds Company Portal, Windows App, and Microsoft 365 detection, the
+next-action decision, persistent logs, and JSON/text summaries. Sprint 4 freezes
+the Version 1 summary contract and prepares the signed-script package layout.
+Version 1 does not contact an API, stay running as a service, monitor every PC
+remotely, or update an Angular dashboard. Sprint 2 configuration keeps future
+API and download-queue capabilities explicitly disabled.
 
 ### Recommended target
 
@@ -171,28 +169,30 @@ sequenceDiagram
 
 The crucial reliability step is persisting the event locally **before** trying the network. If the API is unavailable, the evidence is not lost.
 
-## 6. Technical work planned locally
+## 6. Local technical work
 
-The Version 1 module is expected to implement this local pattern in Sprints 2–4.
+The Version 1 module implements this pattern incrementally in Sprints 2–4.
 
 ### Input and configuration
 
-The agent will read `assistant.config.json`, check `schemaVersion`, and verify that
-required rule sections exist. It will validate the asset tag and email before
-changing the device.
+Implemented in Sprint 2: the agent reads `assistant.config.json`, checks its
+schema and configuration versions, rejects missing/unexpected/unsafe values, and
+validates the asset tag and email before any setting operation.
 
 ### Device settings
 
-The agent will use supported Windows commands:
+Implemented in Sprint 2 with simulation coverage; approved Windows-device
+validation remains pending. The agent uses supported Windows commands:
 
 - `Set-TimeZone` for `Eastern Standard Time`
 - `powercfg.exe` with configured GUIDs and values for lid and button behavior
 
-It must report permission or platform errors instead of attempting to bypass them.
+It reports permission or platform outcomes instead of attempting to bypass them,
+reads before writing, verifies real changes, and honors `-WhatIf`.
 
 ### Application evidence
 
-The agent will check:
+Planned for Sprint 3. The agent will check:
 
 - Appx packages through `Get-AppxPackage`
 - standard 64-bit, 32-bit, and current-user uninstall registry locations
@@ -201,7 +201,8 @@ Each match includes the source, detected name, and version. Detection answers �
 
 ### Decision
 
-The local decision engine will evaluate configured priorities:
+Planned for Sprint 3. The local decision engine will evaluate configured
+priorities:
 
 ```text
 device configuration problem

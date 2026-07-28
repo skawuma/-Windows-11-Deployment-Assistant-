@@ -1,7 +1,9 @@
 # Requirements reconciliation
 
 Sprint 1 reviewed all five Markdown files initially present in the workspace plus
-the twelve-sprint build prompt.
+the twelve-sprint build prompt. Sprint 2 implemented the first bounded
+PowerShell increment and updated this reconciliation without changing later
+sprint scope.
 
 ## Initial workspace
 
@@ -31,8 +33,8 @@ Resolution:
   [`reference/original-version-1-readme.md`](reference/original-version-1-readme.md)
   with an archival status banner.
 - The root README now reports the actual implementation status.
-- The implementation and device-interaction guides now label those behaviors and
-  files as planned.
+- The implementation and device-interaction guides distinguish the Sprint 2
+  implementation from behavior still planned for Sprints 3 and 4.
 - No missing implementation was recreated in Sprint 1 because that would cross
   into Sprints 2 and 3.
 
@@ -54,9 +56,20 @@ Resolution: establish the requested folders inside the existing workspace withou
 renaming the user's directory. The logical project name remains
 `qnity-deployment-assistant`.
 
+## Requirements implemented in Sprint 2
+
+- Versioned local configuration and strict configuration validation.
+- Asset-tag and email normalization/validation before device work.
+- Time-zone and lid/button settings with platform, permission, idempotence,
+  `-WhatIf`, and post-change verification safeguards.
+- Deterministic simulation fixtures and a dependency-free PowerShell test
+  harness.
+
+These settings remain development/test behavior until endpoint and
+change-management owners approve the exact production values.
+
 ## Requirements retained without implementation
 
-- Approved time-zone and power settings are planned for Sprint 2.
 - Application detection and next-action behavior are planned for Sprint 3.
 - The Version 1 JSON contract freezes in Sprint 4.
 - Spring Boot and PostgreSQL begin in Sprint 5.
@@ -90,7 +103,12 @@ These documents describe target behavior but do not prove that it exists.
 15. Select device and human authentication designs for Version 2.
 16. Confirm exact enterprise URLs, tenant registrations, roles, and gateway/TLS
     requirements before any integration is claimed.
-17. Supply and verify the exact GitHub repository URL under `skawuma`.
+
+## Resolved operational requirements
+
+- The exact GitHub repository was supplied and verified as
+  `https://github.com/skawuma/-Windows-11-Deployment-Assistant-.git`; the active
+  branch is connected to that remote.
 
 ## Safe interpretation rules
 

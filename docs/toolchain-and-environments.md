@@ -35,22 +35,21 @@ are not implementation claims: the backend and frontend have not been scaffolded
 
 ## Development-machine inventory
 
-The Sprint 1 host reported:
+The development host reported:
 
-| Tool | Installed on 2026-07-26 | Sprint baseline satisfied? |
+| Tool | Installed version and observation date | Sprint baseline satisfied? |
 |---|---|---|
-| PowerShell | not installed | No; Windows/PowerShell tests unavailable |
+| PowerShell | 7.6.4, installed 2026-07-28 | Yes for cross-platform Sprint 2 simulation; Windows PowerShell 5.1 remains untested |
 | Java | OpenJDK 23.0.2 | No; Java 21 must be selected for backend work |
 | Maven | 3.9.9 | No; wrapper will pin 3.9.16 in Sprint 5 |
 | Node.js | 22.15.0 | No; below Angular 22's supported Node 22 minimum |
 | npm | 10.9.2 | Not evaluated independently |
 | PostgreSQL client | 14.19 | No; local client is older than selected server |
 | Docker | 28.1.1 | Available; no Sprint 1 container is defined |
-| GitHub CLI | 2.53.0 | Installed, but the `skawuma` login is expired |
+| GitHub CLI | 2.53.0 | Installed and authenticated for the verified `skawuma` remote |
 
-These mismatches do not block the documentation-only Sprint 1 work. They must be
-resolved or isolated through project wrappers/containers before their respective
-implementation sprints.
+Remaining mismatches must be resolved or isolated through project
+wrappers/containers before their respective implementation sprints.
 
 ## Controlled environments
 
@@ -93,7 +92,11 @@ implementation sprints.
 
 ## Configuration separation
 
-No application configuration exists yet. Future implementation must:
+Sprint 2 adds a versioned PowerShell configuration under `powershell/config/`.
+It contains no secrets, keeps future API and queue extensions disabled, and
+requires production approval for the documented device-setting baseline.
+
+Future implementation must:
 
 - read secrets from approved runtime secret stores or environment injection;
 - commit only safe examples such as `.env.example`;

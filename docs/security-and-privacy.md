@@ -72,12 +72,14 @@ non-identifying identifier is sufficient.
 
 ## Device-changing operations
 
-- Sprint 1 performs no device-changing behavior.
-- Future settings must come from approved configuration.
+- Sprint 2 implements only configured time-zone and lid/button settings; its
+  exact values still require enterprise approval before production use.
+- Settings come from strict versioned configuration.
 - Input and configuration validation must finish before any change.
 - `-WhatIf` must cause no change.
 - Permission failures are reported, not bypassed.
 - Operations must be idempotent.
+- Simulation changes in-memory fixture state only.
 - The assistant guides technicians to approved install mechanisms; it does not
   sideload software or bypass enterprise deployment controls.
 

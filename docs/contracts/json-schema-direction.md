@@ -1,6 +1,9 @@
 # Initial JSON schema direction
 
-Status: architectural direction only. No runtime schema is frozen in Sprint 1.
+Status: architectural direction for durable summaries and events. Sprint 2 adds
+a strict Draft 2020-12 schema for local assistant configuration at
+`powershell/config/assistant.config.schema.json`; no durable runtime summary or
+API event schema is frozen yet.
 
 ## Schema standard and ownership
 

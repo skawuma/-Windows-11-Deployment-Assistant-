@@ -89,3 +89,43 @@
 - **Rationale:** The workspace had no Git metadata or exact repository URL.
 - **Consequence:** Sprint 1 can reach `READY_FOR_REVIEW` locally but cannot be
   `COMPLETE` until the milestone commit is pushed to the verified remote.
+
+## D-009 — Use a provisional configurable asset-tag rule
+
+- **Date:** 2026-07-28
+- **Status:** Accepted for development; enterprise confirmation required
+- **Decision:** Normalize asset tags to uppercase and, for the Sprint 2
+  baseline, accept 3–32 alphanumeric characters with internal hyphens. Keep the
+  pattern and length limits in versioned configuration.
+- **Rationale:** Sprint 2 needs deterministic input validation, but the
+  enterprise asset-tag format remains unresolved.
+- **Consequence:** The baseline is suitable for simulation and approved test
+  work only. A confirmed enterprise format requires coordinated configuration,
+  schema, implementation, test, and documentation updates before production.
+
+## D-010 — Make device configuration observable and repeatable
+
+- **Date:** 2026-07-28
+- **Status:** Accepted
+- **Decision:** Validate all inputs and configuration first, read each current
+  setting before writing, use PowerShell `ShouldProcess`, verify after a real
+  write, and normalize every outcome to `Pass`, `Fail`, `Skipped`, or `Error`.
+- **Rationale:** A technician must be able to rerun the assistant safely and
+  distinguish compliance, permission, platform, and execution outcomes.
+- **Consequence:** Compliant settings are not rewritten, `-WhatIf` performs no
+  writes, non-Windows systems skip safely, and setting failures do not authorize
+  a bypass.
+
+## D-011 — Simulate device state behind the same configuration workflow
+
+- **Date:** 2026-07-28
+- **Status:** Accepted
+- **Decision:** Use checked-in JSON device-state fixtures for deterministic
+  cross-platform tests while preserving the same validation and result-shaping
+  path used by a real run.
+- **Rationale:** Sprint 2 is being developed on macOS and cannot claim real
+  Windows validation. Simulation allows safe coverage without manufacturing
+  enterprise integration evidence.
+- **Consequence:** Simulation results prove local logic only. Windows PowerShell
+  5.1, supported Windows commands, Administrator behavior, signing, and approved
+  device settings still require test-environment validation.

@@ -9,16 +9,17 @@ service will coordinate large Windows App and Microsoft 365 downloads.
 ## Current status
 
 - **Version:** 1 — Local PowerShell Technician Assistant
-- **Sprint:** 1 — Discovery, governance, and project foundation
-- **Implementation:** documentation and repository foundation only
-- **Runtime behavior:** none
-- **Next sprint:** Sprint 2, only after the user explicitly says
-  `Proceed with Sprint 2`
+- **Sprint:** 2 — PowerShell inputs, configuration, and device settings
+- **Implementation:** local PowerShell configuration foundation
+- **Runtime behavior:** simulation-tested; approved Windows validation pending
+- **Next sprint:** Sprint 3, only after the user explicitly says
+  `Proceed with Sprint 3`
 
-No PowerShell assistant, backend, frontend, database schema, API integration, or
-download-slot coordinator exists yet. Earlier source documents that described
-Version 1 as already implemented have been corrected or archived; see
-[requirements reconciliation](docs/requirements-reconciliation.md).
+Sprint 2 validates inputs and configuration, applies the documented time-zone and
+power baseline through idempotent Windows operations, supports `-WhatIf`, and
+provides safe noninteractive simulation. Application detection, next-action
+decisions, logs, and summaries begin in Sprint 3. No backend, frontend, database
+schema, API integration, or download-slot coordinator exists yet.
 
 ## Purpose and boundaries
 
@@ -68,7 +69,7 @@ See [architecture](docs/architecture.md) and
 qnity-deployment-assistant/
 ├── backend/                  Spring Boot work beginning in Sprint 5
 ├── frontend/                 Angular work beginning in Sprint 9
-├── powershell/               local assistant work beginning in Sprint 2
+├── powershell/               Version 1 local assistant
 ├── docs/                     architecture, governance, and requirements
 ├── scripts/                  repository-level validation utilities
 ├── README.md
@@ -114,28 +115,51 @@ Four controlled environments are defined:
 Production behavior must never be inferred from simulation results. Details are
 in [toolchain and environments](docs/toolchain-and-environments.md).
 
-## Local development in Sprint 1
+## Local development
 
-There are no application dependencies to install and no services to start yet.
-Run the foundation validation from a POSIX shell:
+Run the repository foundation validation from a POSIX shell:
 
 ```bash
 ./scripts/validate-foundation.sh
 ```
 
-Current validation checks repository structure, required governance documents,
-documented security boundaries, and placeholder scope.
+Run the Sprint 2 PowerShell suite:
+
+```powershell
+.\powershell\tests\Invoke-Tests.ps1
+```
+
+Run a safe noninteractive simulation:
+
+```powershell
+.\powershell\Start-QnityDeploymentAssistant.ps1 `
+  -AssetTag 'TEST-1001' `
+  -UserEmail 'user@example.com' `
+  -SimulationDataPath '.\powershell\samples\simulation.device-needs-configuration.json' `
+  -NonInteractive
+```
+
+Preview a configuration run with no changes:
+
+```powershell
+.\powershell\Start-QnityDeploymentAssistant.ps1 `
+  -AssetTag 'QNY-10427' `
+  -UserEmail 'user@example.com' `
+  -WhatIf
+```
+
+See the [PowerShell guide](powershell/README.md) for requirements, configuration,
+result semantics, exit codes, and safety constraints.
 
 The following operational instructions are intentionally deferred:
 
-- PowerShell execution: Sprint 2
 - PostgreSQL and Docker Compose startup: Sprint 5
 - Backend startup and API environment variables: Sprint 5
 - Sample device event: Sprint 6
 - Frontend startup and API URL configuration: Sprint 9
 - Dashboard URL: Sprint 9
 
-No `.env` file or application secret is required or committed in Sprint 1.
+No `.env` file or application secret is required or committed in Sprint 2.
 
 ## Security and privacy
 
@@ -172,13 +196,14 @@ See [security and privacy](docs/security-and-privacy.md).
 
 ## Known limitations and unresolved requirements
 
-- No application behavior or application tests exist yet.
-- Windows-specific validation cannot run because no Sprint 2 code exists and the
-  current development host does not have PowerShell installed.
+- Application detection, decisions, logs, summaries, and packaging do not exist
+  yet.
+- PowerShell 7.6.4 simulation tests pass on macOS; Windows PowerShell 5.1 and
+  real Windows device changes have not been tested.
 - Package identities, approved power-setting values, site codes, evidence rules,
   authentication details, retention, signatures, exception authorities, and
   multiple checklist meanings still require enterprise confirmation.
-- No GitHub repository remote is configured. The exact repository URL under the
-  `skawuma` account must be supplied and verified before any push.
+- The provisional asset-tag format must be replaced or confirmed when Qnity
+  supplies its authoritative convention.
 
-Do not begin Sprint 2 until it is explicitly authorized.
+Do not begin Sprint 3 until it is explicitly authorized.

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0.0",
+  "platform": {
+    "isWindows": true,
+    "isAdministrator": true
+  },
+  "settings": {
+    "timeZoneId": "UTC",
+    "power": {
+      "lidClose": {
+        "acValue": 1,
+        "dcValue": 1
+      },
+      "powerButton": {
+        "acValue": 0,
+        "dcValue": 0
+      },
+      "sleepButton": {
+        "acValue": 1,
+        "dcValue": 1
+      }
+    }
+  },
+  "failures": []
+}

@@ -213,11 +213,13 @@ Use codes in JSON and databases; keep technician-facing wording configurable.
 
 ### Step 3 — Set up safe development environments
 
-Use three environments:
+Use four environments:
 
 1. **Developer simulation:** fake application results; no Windows changes.
 2. **Approved Windows test device:** representative hardware and test accounts.
 3. **Pilot:** a small number of real migrations with technician supervision.
+4. **Production:** signed, change-controlled artifacts with approved enterprise
+   identity, storage, monitoring, retention, and rollback.
 
 Never develop destructive imaging/reset behavior against a user device. The assistant should begin after the approved imaging process in Version 1.
 
@@ -225,27 +227,33 @@ Never develop destructive imaging/reset behavior against a user device. The assi
 
 ### Step 4 — Complete Version 1 input and configuration
 
-The original concept documentation described these intended files, but they were
-not present when Sprint 1 began:
+Sprint 2 implements the first bounded Version 1 files:
 
-- `powershell/Start-QnityDeploymentAssistant.ps1` as the planned entry point
-- `powershell/config/assistant.config.json` for settings, application rules, and next actions
-- a PowerShell module under `powershell/src/` for implementation
+- `powershell/Start-QnityDeploymentAssistant.ps1` as the local entry point
+- `powershell/config/assistant.config.json` for input, device settings, and
+  disabled future integrations
+- `powershell/config/assistant.config.schema.json` for strict configuration
+  validation
+- a versioned PowerShell module under `powershell/src/`
 
-They are planned for Sprints 2 and 3 and must not be described as implemented
-until their behavior and tests exist.
+Application rules, next-action decisions, persistent logs, and summaries remain
+planned for Sprint 3. Sprint 4 freezes their Version 1 contract and packages the
+signed-script layout.
 
 Refine input to collect only the data required for Version 1. Keep new serial numbers, backup attestations, and signoff out until their storage and authorization rules are approved.
 
-Validate:
+Sprint 2 validates:
 
-- asset-tag format
+- a provisional configurable asset-tag format
 - email format
 - configuration schema version
-- required application rules
-- safe output location
+- all required device-setting and safety fields
 
-**Acceptance criterion:** invalid or missing input stops safely and explains the correction.
+Required application rules and safe output locations are added in their
+authorized later sprints.
+
+**Acceptance status:** implemented and covered by the Sprint 2 PowerShell test
+harness; real Windows validation remains pending.
 
 ### Step 5 — Apply and verify device settings
 
@@ -473,17 +481,18 @@ erDiagram
 
 Do not store a signature image unless the organization's legal, privacy, and retention owners approve it. An authenticated acceptance event may be preferable.
 
-## 8. How the planned files map to the design
+## 8. How the files map to the design
 
-| File | Responsibility | Earliest planned sprint |
+| File | Responsibility | Status |
 |---|---|---|
-| `powershell/Start-QnityDeploymentAssistant.ps1` | Collect parameters and start one local run | Sprint 2 |
-| `powershell/config/assistant.config.json` | Approved settings, detection rules, messages, and disabled future endpoints | Sprint 2 |
-| `powershell/src/Qnity.DeploymentAssistant.psm1` | Configuration, detection, decisions, logging, and summaries | Sprints 2–3 |
-| `powershell/src/Qnity.DeploymentAssistant.psd1` | Versioned PowerShell module metadata | Sprint 2 |
-| `powershell/samples/*.json` | Safe simulated application states | Sprints 2–3 |
-| `powershell/tests/Invoke-Tests.ps1` | PowerShell behavior checks | Sprints 2–4 |
-| `docs/architecture.md` | Technical boundaries and future service design | Sprint 1 |
+| `powershell/Start-QnityDeploymentAssistant.ps1` | Collect parameters and start one local run | Sprint 2 implemented |
+| `powershell/config/assistant.config.json` | Input, approved-setting baseline, and disabled future integrations | Sprint 2 implemented |
+| `powershell/config/assistant.config.schema.json` | Strict configuration contract | Sprint 2 implemented |
+| `powershell/src/Qnity.DeploymentAssistant.psm1` | Configuration/input/settings now; detection, decisions, logs, and summaries later | Sprint 2 partial implementation |
+| `powershell/src/Qnity.DeploymentAssistant.psd1` | Versioned PowerShell module metadata | Sprint 2 implemented |
+| `powershell/samples/*.json` | Safe simulated device states | Sprint 2 implemented; app states later |
+| `powershell/tests/Invoke-Tests.ps1` | PowerShell behavior checks | Sprint 2 implemented and extended through Sprint 4 |
+| `docs/architecture.md` | Technical boundaries and future service design | Sprint 1, maintained incrementally |
 | `docs/field-workflow-reference.md` | Transcribed field requirements and open questions | Sprint 1 input |
 
 ## 9. Suggested Codex handoff method

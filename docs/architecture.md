@@ -1,9 +1,10 @@
 # Deployment Assistant architecture
 
-> **Implementation status:** This is the target architecture. At Sprint 1 the
-> repository contains governance and architecture documentation only; no
-> PowerShell agent, Spring Boot service, Angular application, PostgreSQL schema,
-> API integration, or download-slot service is implemented.
+> **Implementation status:** The Sprint 2 PowerShell entry point, strict local
+> configuration, validated inputs, simulated device adapter, and idempotent
+> time-zone/power-setting workflow are implemented. Application detection,
+> decision rules, persistent logs/summaries, Spring Boot, Angular, PostgreSQL,
+> API integration, and download-slot coordination are not yet implemented.
 
 Version 1 deliberately keeps the device workflow local while defining stable seams for later increments. The target architecture now also reflects the supplied Qnity/illuminet migration, user-signoff, and technician checklist transcribed in [`field-workflow-reference.md`](field-workflow-reference.md).
 

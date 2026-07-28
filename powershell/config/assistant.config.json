@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0.0",
+  "configurationVersion": "2026.07.28",
+  "input": {
+    "assetTag": {
+      "pattern": "^[A-Z0-9](?:[A-Z0-9-]{1,30}[A-Z0-9])?$",
+      "minimumLength": 3,
+      "maximumLength": 32,
+      "description": "Provisional format until Qnity confirms the authoritative asset-tag convention."
+    },
+    "userEmail": {
+      "pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$",
+      "maximumLength": 254
+    }
+  },
+  "deviceSettings": {
+    "timeZone": {
+      "id": "Eastern Standard Time"
+    },
+    "power": {
+      "scheme": "SCHEME_CURRENT",
+      "subgroupGuid": "4f971e89-eebd-4455-a8de-9e59040e7347",
+      "lidClose": {
+        "settingGuid": "5ca83367-6e45-459f-a27b-476b1d01c936",
+        "acValue": 0,
+        "dcValue": 0
+      },
+      "powerButton": {
+        "settingGuid": "7648efa3-dd9c-4e3e-b566-50f929386280",
+        "acValue": 3,
+        "dcValue": 3
+      },
+      "sleepButton": {
+        "settingGuid": "96996bc0-ad50-47ec-923b-6f41874dd9eb",
+        "acValue": 0,
+        "dcValue": 0
+      }
+    }
+  },
+  "safety": {
+    "productionApprovalRequired": true,
+    "deviceChangesRequireAdministrator": true,
+    "apiEnabled": false,
+    "downloadQueueEnabled": false
+  }
+}

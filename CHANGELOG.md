@@ -4,6 +4,40 @@ All notable project changes are recorded here. Dates use `yyyy-MM-dd`.
 
 ## [Unreleased]
 
+### Sprint 2 — 2026-07-28
+
+#### Added
+
+- Versioned PowerShell configuration and strict Draft 2020-12 configuration
+  schema for local input, time-zone, power, and safety policy.
+- PowerShell module and entry script with asset-tag/email validation,
+  read-before-write configuration, post-change verification, idempotence, and
+  `-WhatIf` support.
+- Deterministic simulation fixtures for compliant, changes-required,
+  standard-user, non-Windows, and injected-failure device states.
+- Dependency-free PowerShell behavior tests and safe operator samples.
+
+#### Changed
+
+- Advanced the project to Version 1 Sprint 2 local device configuration.
+- Documented the provisional asset-tag format and production approval boundary
+  for configured device settings.
+- Recorded PowerShell 7.6.4 as the local simulation-test runtime.
+
+#### Validation
+
+- PowerShell configuration, input, platform, permission, idempotence, failure,
+  entry-point, and no-change behavior are covered by the Sprint 2 harness.
+- Real Windows, Windows PowerShell 5.1, code signing, and production setting
+  approval remain pending.
+
+#### Security
+
+- Configuration validation finishes before any setting operation.
+- API and download-queue capabilities remain disabled.
+- Permission failures are reported rather than bypassed, and simulation/WhatIf
+  paths do not alter device state.
+
 ### Sprint 1 — 2026-07-26
 
 #### Added
