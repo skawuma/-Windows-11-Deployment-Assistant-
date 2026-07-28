@@ -4,11 +4,11 @@ Current version: Version 1 — Local PowerShell Technician Assistant
 
 Current sprint: Sprint 2 — PowerShell inputs and device configuration
 
-Sprint status: READY_FOR_REVIEW
+Sprint status: COMPLETE
 
 Start date: 2026-07-28
 
-Completion date: Pending successful GitHub push
+Completion date: 2026-07-28
 
 Implemented:
 
@@ -27,6 +27,8 @@ Implemented:
 - Kept API and download-queue integrations explicitly disabled.
 - Deferred application detection, decision rules, persistent logs, and durable
   summary artifacts to their authorized later sprints.
+- Published milestone commit `c549240` to
+  `origin/codex/qnity-incremental-development`.
 
 Tests executed:
 
@@ -64,5 +66,5 @@ Unresolved decisions:
   including asset-tag format, device settings, application identities,
   authentication, retention, signatures, and exception policy.
 
-Next authorized sprint: None. Complete and push Sprint 2, then wait for the
-explicit instruction `Proceed with Sprint 3`.
+Next authorized sprint: None. Wait for the explicit instruction
+`Proceed with Sprint 3`.
